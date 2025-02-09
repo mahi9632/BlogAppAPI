@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 @Entity('posts')
 export class PostEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: bigint;
 
   @Column({ length: 255 })
   title: string;

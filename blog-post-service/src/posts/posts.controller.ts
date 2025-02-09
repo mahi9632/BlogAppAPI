@@ -19,6 +19,10 @@ export class PostsController {
     return this.postsService.findAll();
   }
 
+  @MessagePattern({cmd: 'get-post-detail'})
+  async getPostById(id){
+    return this.postsService.findById(id);
+  }
   @MessagePattern({ cmd: 'delete-post' })
   async deletePost(@Payload() data: { id: string }) {
     return this.postsService.remove(data.id);

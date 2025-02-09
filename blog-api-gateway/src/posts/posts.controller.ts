@@ -22,10 +22,18 @@ export class PostsController {
     return this.postsServiceClient.send({ cmd: 'get-posts' }, {});
   }
 
-  // // Delete a post by ID
-  // @UseGuards(JwtAuthGuard)
-  // @Delete(':id')
-  // async deletePost(@Param('id') id: string) {
-  //   return this.postsServiceClient.send({ cmd: 'delete-post' }, { id });
-  // }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  async getPostById(@Param('id') id:bigint){
+
+    return this.postsServiceClient.send({ cmd: 'get-post-detail' },  id );
+  }
+
+  // Delete a post by ID
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  async deletePost(@Param('id') id: string) {
+    return this.postsServiceClient.send({ cmd: 'delete-post' }, { id });
+  }
 }
