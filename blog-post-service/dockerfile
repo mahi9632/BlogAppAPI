@@ -1,0 +1,26 @@
+# Use the official Node.js image as the base
+FROM node:20-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and yarn.lock
+COPY package.json yarn.lock ./
+
+# Install dependencies using Yarn
+RUN yarn install 
+
+# Copy the rest of the application code
+COPY . .
+
+# Install NestJS CLI globally
+RUN yarn global add @nestjs/cli
+
+# Build the application
+RUN yarn build
+
+# Expose the application port
+EXPOSE 8081
+
+# Start the application
+CMD ["yarn", "start:dev"]
