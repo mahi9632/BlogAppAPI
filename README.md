@@ -83,7 +83,8 @@ Ensure you have the following installed:
    yarn start
   ```
 
-📜 API Documentation
+## 📜 API Documentation
+
 API documentation is available via Swagger. After running the application, access it at:
 
   ```bash
