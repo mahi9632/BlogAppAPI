@@ -7,7 +7,6 @@ import * as path from 'path';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
-
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 async function bootstrap() {
@@ -19,9 +18,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-
-  app.useGlobalGuards(new JwtAuthGuard())
-
+  app.useGlobalGuards(new JwtAuthGuard());
 
   // app.connectMicroservice<MicroserviceOptions>({
   //   transport: Transport.TCP,
@@ -40,7 +37,6 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-doc', app, documentFactory);
-
 
   // Start the main application
   await app.listen(8080);

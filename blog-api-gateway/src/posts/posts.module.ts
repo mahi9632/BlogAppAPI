@@ -13,6 +13,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ]),
   ],
   controllers: [PostsController],
-  exports:[ClientsModule]
+  exports: [ClientsModule],
 })
 export class PostsModule {}

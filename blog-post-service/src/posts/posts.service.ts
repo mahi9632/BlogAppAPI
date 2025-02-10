@@ -16,20 +16,15 @@ export class PostsService {
     return this.postsRepository.save(post);
   }
 
-  async findById(id:bigint): Promise<PostEntity[]> {
-    console.log("posrService search",id);
-    
-    return this.postsRepository.findBy({id})
-
+  async findById(id: bigint): Promise<PostEntity[]> {
+    return this.postsRepository.findBy({ id });
   }
-  
 
   async findAll(): Promise<PostEntity[]> {
-    console.log("posrService search");
-    
-    return this.postsRepository.createQueryBuilder("post")
-    .select(["post.title","post.id"])
-    .getMany();;
+    return this.postsRepository
+      .createQueryBuilder('post')
+      .select(['post.title', 'post.id'])
+      .getMany();
   }
 
   async remove(id: string): Promise<void> {

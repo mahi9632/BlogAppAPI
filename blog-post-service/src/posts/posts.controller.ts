@@ -9,8 +9,6 @@ export class PostsController {
 
   @MessagePattern({ cmd: 'create-post' })
   async createPost(@Payload() createPostDto: CreatePostDto) {
-    console.log("PostService : ",createPostDto);
-    
     return this.postsService.create(createPostDto);
   }
 
@@ -19,8 +17,8 @@ export class PostsController {
     return this.postsService.findAll();
   }
 
-  @MessagePattern({cmd: 'get-post-detail'})
-  async getPostById(id){
+  @MessagePattern({ cmd: 'get-post-detail' })
+  async getPostById(id) {
     return this.postsService.findById(id);
   }
   @MessagePattern({ cmd: 'delete-post' })
