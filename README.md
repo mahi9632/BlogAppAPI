@@ -83,4 +83,13 @@ Ensure you have the following installed:
    yarn start
   ```
 
+## 📜 API Documentation
+
+API documentation is available via Swagger. After running the application, access it at:
+
+  ```bash
+   http://localhost:8080/api-docs
+  ```
+
+
 
