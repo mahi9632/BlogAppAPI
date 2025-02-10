@@ -8,7 +8,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       {
         name: 'POSTS_SERVICE',
         transport: Transport.TCP,
-        options: { host: 'localhost', port: 8081 },
+        options: { host: process.env.APP_HOST, port: 8081 },
       },
     ]),
   ],

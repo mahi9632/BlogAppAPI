@@ -26,7 +26,7 @@ export class AuthController {
   ) {
     this.client = ClientProxyFactory.create({
       transport: Transport.TCP,
-      options: { host: 'localhost', port: 8081 },
+      options: { host: process.env.APP_HOST, port: 8081 },
     });
   }
   // app.useGlobalGuards(new GoogleAuthGuard())
