@@ -49,16 +49,6 @@ Ensure you have the following installed:
    yarn install
   ```
 
-▶️ Running the Application
-
-  ```bash
-   cd blog-api-gateway
-   yarn start
-
-   cd blog-post-service
-   yarn start
-  ```
-
 3️⃣ Configure Environment Variables
 
   ```bash
@@ -72,6 +62,16 @@ Ensure you have the following installed:
    GOOGLE_CLIENT_ID= googleClientID
    GOOGLE_CLIENT_SECRET= GgoogleSecreteId
    GOOGLE_CALLBACK_URL= authcallback
+  ```
+
+▶️ Running the Application
+
+  ```bash
+   cd blog-api-gateway
+   yarn start
+
+   cd blog-post-service
+   yarn start
   ```
 
 🐳 Running with Docker
