@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../database/Entities/User';
@@ -12,26 +12,42 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  //intiate Login
+  // Initiate Login
   async login(user: any) {
-    const payload = { email: user.email };
-    return {
-      accessToken: this.jwtService.sign(payload),
-    };
+    try {
+      const payload = { email: user.email };
+      return {
+        accessToken: this.jwtService.sign(payload),
+      };
+    } catch (error) {
+      throw new InternalServerErrorException('Error generating access token');
+    }
   }
 
-  //validate User
+  // Validate User
   async validateUser(details: UserDetails) {
-    const user = await this.userRepository.findOneBy({ email: details.email });
-    if (user) return user;
-    console.log('User not found. Creating...');
-    const newUser = this.userRepository.create(details);
-    return this.userRepository.save(newUser);
+    try {
+      const user = await this.userRepository.findOneBy({ email: details.email });
+      if (user) return user;
+
+      console.log('User not found. Creating...');
+      const newUser = this.userRepository.create(details);
+      return await this.userRepository.save(newUser);
+    } catch (error) {
+      throw new InternalServerErrorException('Error validating user');
+    }
   }
 
-  //find the existance of User
+  // Find User by Email
   async findUser(email: string) {
-    const user = await this.userRepository.findOneBy({ email });
-    return user;
+    try {
+      const user = await this.userRepository.findOneBy({ email });
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+      return user;
+    } catch (error) {
+      throw new InternalServerErrorException('Error retrieving user');
+    }
   }
 }
